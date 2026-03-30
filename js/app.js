@@ -1,11 +1,6 @@
 /* ================= SERVIDOR ================= */
 
-let servidorActual = localStorage.getItem("srv");
-
-if(!servidorActual){
-  servidorActual = document.querySelector('[data-odysee]') ? "ody" : "ok";
-  localStorage.setItem("srv", servidorActual); // 👈 agregar esto
-}
+let servidorActual = localStorage.getItem("srv") || "ody";
 
 const srvOk  = document.getElementById("srvOk");
 const srvOdy = document.getElementById("srvOdy");
@@ -15,6 +10,7 @@ function pintarServidor(){
   srvOk?.classList.toggle("activo", servidorActual === "ok");
   srvOdy?.classList.toggle("activo", servidorActual === "ody");
 }
+pintarServidor();
 
 srvOk?.addEventListener("click", () => {
   servidorActual = "ok";
@@ -158,5 +154,4 @@ function reproducir(index){
 
 /* ================= START ================= */
 
-pintarServidor();
 reproducir(episodioActual);
